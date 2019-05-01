@@ -1,24 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+
+import WelcomePage from './pages/Welcome';
+import RateLimitingPage from './pages/RateLimiting';
+
+const routes = [
+  {
+    path: '/',
+    exact: true,
+    component: WelcomePage
+  },
+  {
+    path: '/rate-limiting',
+    component: RateLimitingPage
+  }
+];
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header />
+        <Sidebar />
+        <div className="Body">
+          {
+            routes.map((route, index) =>
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
+              />
+            )
+          }
+        </div>
+      </Router>
     </div>
   );
 }
