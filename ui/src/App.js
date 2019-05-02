@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar';
 import WelcomePage from './pages/Welcome';
 import DeclarativeConfigurationPage from './pages/DeclarativeConfiguration';
 import MultiPlatformPage from './pages/MultiPlatform';
+import DiagnosticsPage from './pages/Diagnostics';
 import SingleSignOnPage from './pages/SingleSignOn';
 import RateLimitingPage from './pages/RateLimiting';
 
@@ -27,6 +28,11 @@ const routes = [
     title: 'Multi Platform',
     path: '/multi-platform',
     component: MultiPlatformPage
+  },
+  {
+    title: 'Diagnostics',
+    path: '/diagnostics',
+    component: DiagnosticsPage
   },
   {
     title: 'Single Sign On',
