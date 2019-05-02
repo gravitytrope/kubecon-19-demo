@@ -6,15 +6,35 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 
 import WelcomePage from './pages/Welcome';
+import DeclarativeConfigurationPage from './pages/DeclarativeConfiguration';
+import MultiPlatformPage from './pages/MultiPlatform';
+import SingleSignOnPage from './pages/SingleSignOn';
 import RateLimitingPage from './pages/RateLimiting';
 
 const routes = [
   {
     path: '/',
+    title: 'Welcome',
     exact: true,
     component: WelcomePage
   },
   {
+    title: 'Declarative Configuration',
+    path: '/declarative-configuration',
+    component: DeclarativeConfigurationPage
+  },
+  {
+    title: 'Multi Platform',
+    path: '/multi-platform',
+    component: MultiPlatformPage
+  },
+  {
+    title: 'Single Sign On',
+    path: '/single-sign-on',
+    component: SingleSignOnPage
+  },
+  {
+    title: 'Rate Limiting',
     path: '/rate-limiting',
     component: RateLimitingPage
   }
@@ -25,7 +45,7 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <Sidebar />
+        <Sidebar links={routes} />
         <div className="Body">
           {
             routes.map((route, index) =>

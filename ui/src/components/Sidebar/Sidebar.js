@@ -4,18 +4,7 @@ import styles from './styles.module.scss';
 
 import { NavLink } from 'react-router-dom';
 
-const links = [
-  {
-    path: '/',
-    title: 'Welcome'
-  },
-  {
-    path: '/rate-limiting',
-    title: 'Rate Limiting'
-  }
-];
-
-const Sidebar = () => (
+const Sidebar = ({ links }) => (
   <div className={styles.Sidebar}>
     <ul>
       {
