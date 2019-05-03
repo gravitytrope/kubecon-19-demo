@@ -9,4 +9,3 @@ deploy:
     script: travis-build.sh
     on:
       tags: true
-      condition: $TRAVIS_TAG =~ ^v[0-9]{1,2}+\.[0-9]{1,2}+\.[0-9]{1,2}+(-.*)?$
