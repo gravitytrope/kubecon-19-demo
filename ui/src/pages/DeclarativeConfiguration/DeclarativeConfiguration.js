@@ -8,8 +8,13 @@ const DeclarativeConfiguration = () =>
 
   <p>Ambassador is configured <strong>declaratively</strong>. Unlike traditional
   API Gateways that are configured using REST APIs or UIs, you configure
-  Ambassador through Kubernetes-style annotations. For example, here is
-  the configuration for the `tour` service that you're using right now:
+  Ambassador through Kubernetes-style annotations. Not only is this approach
+  consistent with Kubernetes, but it also makes it possible (and recommended!) for you
+  to manage all your configuration under source control.</p>
+  
+  <p>
+  Here's an example configuration for the `tour` service that's serving 
+  this React application through Ambassador:
   </p>
 
   <pre>

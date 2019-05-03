@@ -11,6 +11,10 @@ import MultiPlatformPage from './pages/MultiPlatform';
 import DiagnosticsPage from './pages/Diagnostics';
 import SingleSignOnPage from './pages/SingleSignOn';
 import RateLimitingPage from './pages/RateLimiting';
+import AmbassadorProPage from './pages/AmbassadorPro';
+import GitHubPage from './pages/GitHub';
+import RateLimitingActionPage from './pages/RateLimitingAction';
+import NextStepsPage from './pages/NextSteps';
 
 const routes = [
   {
@@ -35,7 +39,7 @@ const routes = [
     component: DiagnosticsPage
   },
   {
-    title: 'Single Sign On',
+    title: 'Single Sign-On',
     path: '/single-sign-on',
     component: SingleSignOnPage
   },
@@ -43,6 +47,26 @@ const routes = [
     title: 'Rate Limiting',
     path: '/rate-limiting',
     component: RateLimitingPage
+  },
+  {
+    title: 'Ambassador Pro',
+    path: '/ambassador-pro',
+    component: AmbassadorProPage
+  },
+  {
+    title: 'GitHub Single Sign-On',
+    path: '/github-sso',
+    component: GitHubPage
+  },
+  {
+    title: 'Rate Limiting in Action',
+    path: '/rate-limit-in-action',
+    component: RateLimitingActionPage
+  },
+  {
+    title: 'Next Steps',
+    path: '/next-steps',
+    component: NextStepsPage
   }
 ];
 
