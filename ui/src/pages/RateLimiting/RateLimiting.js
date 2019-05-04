@@ -20,17 +20,19 @@ const RateLimiting = () =>
   </p>
 
   <pre>
-  ```
-apiVersion: getambassador.io/v1beta1
-kind: RateLimit
-metadata:
-  name: basic-rate-limit
-spec:
-  domain: ambassador
-  limits:
-   - pattern: [{x_limited_user: "false"}, {generic_key: "qotm"}]
-     rate: 5
-     unit: minute
+    {`
+    ---
+    apiVersion: getambassador.io/v1beta1
+    kind: RateLimit
+    metadata:
+      name: basic-rate-limit
+    spec:
+      domain: ambassador
+      limits:
+      - pattern: [{x_limited_user: "false"}, {generic_key: "qotm"}]
+        rate: 5
+        unit: minute
+    `}
   </pre>
 
   <p>
