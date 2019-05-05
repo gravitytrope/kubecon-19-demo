@@ -1,0 +1,21 @@
+.code-block {
+    > pre {
+        background: #f5f2f0;
+        color: #000;
+        text-shadow: 0 1px #fff;
+        font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+        font-size: 14px;
+        letter-spacing: .2px;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        tab-size: 4;
+        hyphens: none;
+        margin: .5em 0;
+        overflow: auto;
+        padding: 30px;
+    }
+}

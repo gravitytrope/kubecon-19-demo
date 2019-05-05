@@ -1,1 +1,1 @@
-export { default } from './Diagnostics';
+export { default } from './NextSteps';

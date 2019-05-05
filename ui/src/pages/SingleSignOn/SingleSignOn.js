@@ -14,12 +14,14 @@ const SingleSignOn = () =>
   </p>
 
   <p>
-  Ambassador Pro supports multiple authentication policies through its pluggable <a href="https://www.getambassador.io/reference/filter-reference">Filter</a>
-  mechanism. Here's an example policy:
+    Ambassador Pro supports multiple authentication policies through its pluggable <a href="https://www.getambassador.io/reference/filter-reference">Filter</a> mechanism.
+    Here's an example policy:
   </p>
 
-  <pre>
----
+  <div className="code-block">
+      <pre>
+        <code>
+{`---
 apiVersion: getambassador.io/v1beta2
 kind: Filter
 metadata:
@@ -46,11 +48,16 @@ spec:
       path: "/tour/internal"
       public: false
       filters:
-        - name: basic-auth
-</pre>
+        - name: basic-auth            
+            `}
+        </code>
+    </pre>
+  </div>
 
-<p>The configuration above runs the Keycloak SSO filter for requests to `/tour/private`, while running the
-basic authentication filter for requests to `/tour/internal`.</p>
+  <p>
+    The configuration above runs the Keycloak SSO filter for requests to `/tour/private`, while running the
+    basic authentication filter for requests to `/tour/internal`.
+  </p>
 
   <p>
   Later on in this tour, we'll show you how you can set up SSO using GitHub

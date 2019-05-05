@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import BottomNav from './components/BottomNav';
 
 import WelcomePage from './pages/Welcome';
 import DeclarativeConfigurationPage from './pages/DeclarativeConfiguration';
@@ -88,6 +89,7 @@ function App() {
             )
           }
         </div>
+        <BottomNav routes={routes} />
       </Router>
     </div>
   );

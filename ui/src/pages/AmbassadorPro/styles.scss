@@ -1,0 +1,54 @@
+.free-trial-form {
+    max-width: 500px;
+    margin-left: 25px;
+}
+
+.free-trial-form .input > input {
+    width: 100% !important;
+    background: #fafafa;
+    border: 1px solid rgb(237, 231, 243);
+    border-radius: 3px;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.free-trial-form .hs-button {
+    padding: 15px 30px;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    background-color: #2B2F3E;
+    outline: none;
+    border: none;
+    margin: 25px auto;
+    width: 60%;
+
+    &:hover {
+        background: darken(#2B2F3E, 10);
+    }
+}
+
+.free-trial-form label > span {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.free-trial-form .hs-form-field {
+    margin-bottom: 15px;
+}
+
+.free-trial-form .hs-error-msgs label {
+    color: #F9634E;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.free-trial-form .hs-richtext {
+    font-size: 18px;
+    padding-bottom: 25px;
+}

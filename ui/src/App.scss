@@ -34,7 +34,6 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 ol, ul {
-    list-style: none;
     padding: 0;
     margin: 0;
 }
@@ -92,6 +91,10 @@ body, button, input {
     font-weight: 400;
 }
 
+body {
+    min-width: 1060px;
+}
+
 a {
     color: #F9634E;
     text-decoration: none;
@@ -104,13 +107,7 @@ a:hover {
 h1, h2, h3, h4, h5, h6, strong {
     font-weight: bold;
     line-height: 1.4;
-}
-
-
-.Body {
-    padding: 35px 55px;
-    margin-left: 303px;
-    margin-top: 63px;
+    margin-bottom: 15px;
 }
 
 h1 {
@@ -123,4 +120,87 @@ h2 {
 
 h3 {
     font-size: 19px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.Body {
+    padding: 35px 55px 155px;
+    margin-left: 303px;
+    margin-top: 63px;
+    font-size: 18px;
+
+    ul {
+        list-style-type: square;
+        margin-left: 25px;
+        margin-bottom: 1.05rem;
+    }
+
+    ol {
+        margin-left: 25px;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 25px;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        transition: all .1s cubic-bezier(.4,0,.2,1);
+        border-bottom: 1px solid #f9634e;
+        box-shadow: inset 0 -2px 0 0 #f9634e;
+        font-weight: 700;
+
+        &:hover {
+            background: #f9634e;
+            color: #fff;
+        }
+    }
+
+    .code-block {
+        margin-bottom: 25px;
+
+        > pre {
+            background: #f5f2f0;
+            color: #000;
+            text-shadow: 0 1px #fff;
+            font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+            font-size: 14px;
+            letter-spacing: .2px;
+            text-align: left;
+            white-space: pre;
+            word-spacing: normal;
+            word-break: normal;
+            word-wrap: normal;
+            line-height: 1.5;
+            tab-size: 4;
+            hyphens: none;
+            margin: .5em 0;
+            overflow: auto;
+            padding: 30px;
+        }
+    }
+
+    code {
+        background: #f5f2f0;
+        color: #000;
+        text-shadow: 0 1px #fff;
+        font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+        font-size: 14px;
+        letter-spacing: .2px;
+        text-align: left;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        padding: .1em;
+        border-radius: .3em;
+    }
 }
