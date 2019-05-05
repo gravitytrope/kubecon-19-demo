@@ -2,6 +2,8 @@ import React from 'react';
 
 import './styles.scss';
 
+import ambassadorConsul from '../../images/ambassador-consul.png';
+
 const MultiPlatform = () =>
 <div>
   <h1>Multi Platform</h1>
@@ -18,7 +20,9 @@ const MultiPlatform = () =>
   with Consul's availability data and routes traffic to the appropriate applications,
   whether or not that application is in Kubernetes.</p>
 
-  <p>insert image here</p>
+  <p>
+    <img src={ambassadorConsul} alt="consul" />
+  </p>
 
   <p>For more information on Consul, see the <a href="https://www.getambassador.io/user-guide/consul">
   Ambassador and Consul integration guide</a>.</p>

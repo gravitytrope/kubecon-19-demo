@@ -13,12 +13,15 @@ const DeclarativeConfiguration = () =>
   to manage all your configuration under source control.</p>
   
   <p>
-  Here's an example configuration for the `tour` service that's serving 
+    Here's an example configuration for the <code>tour</code> service that's serving
   this React application through Ambassador:
   </p>
 
-  <pre>
-  ---
+  <div className="code-block">
+      <pre>
+        <code>
+    {
+`---
 apiVersion: v1
 kind: Service
 metadata:
@@ -33,15 +36,20 @@ metadata:
       service: tour
 spec:
   ports:
-  - name: http
-    port: 80
-  </pre>
+    - name: http
+      port: 80
+`}
+        </code>
+    </pre>
+  </div>
 
-  <p>This is a standard Kubernetes service called `tour`. In the service, we create
-  an Ambassador `mapping` resource which maps requests from `/` to `service: tour`.
-  Ambassador exposes a rich set of configuration options for the mapping object,
-  including timeouts, load balancing options, traffic weights, and more. For details,
-  see <a href="https://www.getambassador.io/reference/mappings">the mapping documentation</a>.</p>
+  <p>
+    This is a standard Kubernetes service called <code>tour</code>. In the service, we create
+    an Ambassador <code>mapping</code> resource which maps requests from <code>/</code> to <code>service: tour</code>.
+    Ambassador exposes a rich set of configuration options for the mapping object,
+    including timeouts, load balancing options, traffic weights, and more. For details,
+    see <a href="https://www.getambassador.io/reference/mappings">the mapping documentation</a>.
+  </p>
   
 </div>;
 

@@ -1,0 +1,38 @@
+.Container {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background: white;
+    padding: 15px 55px;
+    left: 302px;
+}
+
+.Link {
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 18px;
+    line-height: 60px;
+    font-weight: bold;
+    padding: 0 30px;
+    border-bottom: none !important;
+    box-shadow: none !important;
+
+    &.Prev {
+        background: #A1A1A1;
+        margin-right: 15px;
+
+        &:hover {
+            background: darken(#A1A1A1, 10);
+        }
+    }
+
+    &.Next {
+        background: #2B2F3E;
+
+        &:hover {
+            background: darken(#2B2F3E, 10);
+        }
+    }
+}

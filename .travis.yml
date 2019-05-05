@@ -1,0 +1,11 @@
+---
+language: generic
+
+services:
+  - docker
+
+deploy:
+  - provider: script
+    script: bash travis-build.sh
+    on:
+      tags: true
