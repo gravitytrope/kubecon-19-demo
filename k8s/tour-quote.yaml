@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-quote
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: tour-quote-mapping
+      prefix: /quote/
+      service: ui-quote
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 5000
+  selector:
+    app: tour
+    component: quote
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tour-quote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tour
+      component: quote
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: tour
+        component: quote
+    spec:
+      containers:
+      - name: quote
+        image: quay.io/datawire/tour:quote-v0.0.1-travis3
+        ports:
+        - name: http
+          containerPort: 5000
+        resources:
+          limits:
+            cpu: "0.1"
+            memory: 100Mi
