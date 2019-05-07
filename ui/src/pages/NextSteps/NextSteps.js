@@ -10,11 +10,11 @@ const NextSteps = () =>
   for you to continue going forward:</p>
 
   <ul>
-  <li>Our <a href="https://d6e.co/slack">Slack channel</a> is a good place to join for help (and please stick around and help others)</li>
-  <li>We have a number of <a href="https://www.getambassador.io/docs/guides/">Guides</a> that walk you through configuring 
-  gRPC, distributed tracing, and many other features of Ambassador</li>
-  <li><a href="https://www.getambassador.io/contact">Contact Sales</a> if you are interested in 
-  the additional security capabilities in Ambassador Pro, or if you want guaranteed support</li>
+    <li>Our <a href="https://d6e.co/slack">Slack channel</a> is a good place to join for help (and please stick around and help others)</li>
+    <li>We have a number of <a href="https://www.getambassador.io/docs/guides/">Guides</a> that walk you through configuring
+    gRPC, distributed tracing, and many other features of Ambassador</li>
+    <li><a href="https://www.getambassador.io/contact">Contact Sales</a> if you are interested in
+    the additional security capabilities in Ambassador Pro, or if you want guaranteed support</li>
   </ul>
 </div>;
 

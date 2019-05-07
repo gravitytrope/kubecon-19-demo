@@ -1,0 +1,16 @@
+.Button {
+    background: #f9634e;
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 16px;
+    line-height: 45px;
+    font-weight: bold;
+    padding: 0 30px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    &:hover {
+        background: darken(#f9634e, 10%);
+    }
+}

@@ -9,7 +9,7 @@ const Sidebar = ({ links }) => (
     <ul>
       {
         links.map((link, index) => (
-          <li className={styles.ItemLi}>
+          <li key={index} className={styles.ItemLi}>
             <NavLink
               exact
               to={link.path}
