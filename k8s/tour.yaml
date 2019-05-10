@@ -2,52 +2,70 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ui-quote
+  name: tour
   annotations:
     getambassador.io/config: |
       ---
       apiVersion: ambassador/v1
       kind: Mapping
+      name: tour-ui-mapping
+      prefix: /
+      service: tour:5000
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
       name: tour-quote-mapping
       prefix: /backend
-      service: ui-quote
+      service: tour:8080
       labels:
         ambassador:
           - request_label:
             - backend
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: diag-mapping
+      prefix: /diag/
+      rewrite: /ambassador/v0/diag/
+      service: ambassador-admin:8877
 spec:
   ports:
-  - name: http
-    port: 80
+  - name: ui
+    port: 5000
     targetPort: 5000
+  - name: backend
+    port: 8080
+    targetPort: 8080
   selector:
     app: tour
-    component: quote
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tour-quote
+  name: tour
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: tour
-      component: quote
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
         app: tour
-        component: quote
     spec:
       containers:
-      - name: quote
-        image: quay.io/datawire/tour:quote-v0.0.1-travis3
+      - name: tour-ui
+        image: nkrause/tour:ui-latest
         ports:
         - name: http
           containerPort: 5000
+      - name: quote
+        image: nkrause/tour:quote-latest
+        ports:
+        - name: http
+          containerPort: 8080
         resources:
           limits:
             cpu: "0.1"

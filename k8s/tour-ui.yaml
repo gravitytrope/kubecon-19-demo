@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: tour-ui
-        image: quay.io/datawire/tour:ui-v0.0.1-travis3
+        image: nkrause/tour:ui-latest
         ports:
         - name: http
           containerPort: 5000

@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-var port = 5000
+var port = 8080
 
 const (
 	EnvPORT = "PORT"
