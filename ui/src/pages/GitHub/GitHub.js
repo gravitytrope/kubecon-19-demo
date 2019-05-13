@@ -6,6 +6,8 @@ const GitHub = () =>
 <div>
   <h1>Single Sign-On with GitHub</h1>
 
+  <p>The quote endpoint requires authentication from GitHub in order to return a random quote to the user. With Ambassador Pro, we can require users to login with their GitHub credentials before they can view their random quote while allowing full access to rest of this application.</p>
+
   <p>In this quick start, we'll show you how you can easily configure Ambassador Pro with GitHub for Single Sign-On.</p>
 
   <ol>
@@ -50,8 +52,10 @@ data:
          </pre>
        </div>
      </li>
-    <li>Refresh the page and you will be required to login. Select the <code>GitHub</code> option to login with your GitHub credentials.</li>
+    <li>After waiting for Keycloak to start, click the <code>Get Quote</code> button below to get your quote.</li>
   </ol>
+  
+  <a href="/get-quote/" class="quote-btn">Get Quote</a>
 
 </div>;
 

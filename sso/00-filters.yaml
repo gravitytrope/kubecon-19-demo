@@ -9,7 +9,7 @@ spec:
       path: /auth/*
       public: true
     - host: "*"
-      path: /*
+      path: /get-quote/*
       public: false
       filters:
         - name: keycloak
