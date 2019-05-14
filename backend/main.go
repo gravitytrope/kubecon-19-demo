@@ -30,6 +30,7 @@ type Server struct {
 	hub      *Hub
 	random   *randomzeug.Random
 	quotes   []string
+	reqTimes []time.Time
 }
 
 type QuoteResult struct {
@@ -38,7 +39,32 @@ type QuoteResult struct {
 	Time   time.Time `json:"time"`
 }
 
+func (s *Server) GetRPS() int {
+	n := time.Now()
+
+	count := 0
+	skipped := 0
+
+	for _, t := range s.reqTimes {
+		d := n.Sub(t)
+		if d.Seconds() <= 1 {
+			count += 1
+		} else {
+			skipped += 1
+		}
+	}
+	log.Println("count:", count)
+	log.Println("skipped:", skipped)
+	return count
+}
+
 func (s *Server) GetQuote(w http.ResponseWriter, r *http.Request) {
+	s.reqTimes = append(s.reqTimes, time.Now())
+	if s.GetRPS() >= 100 {
+		http.Error(w, "Request Overload", http.StatusInternalServerError)
+		return
+	}
+
 	quote := s.random.RandomSelectionFromStringSlice(s.quotes)
 	res := QuoteResult{
 		Server: s.id,
