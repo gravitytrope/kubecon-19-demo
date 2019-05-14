@@ -57,12 +57,12 @@ spec:
     spec:
       containers:
       - name: tour-ui
-        image: nkrause/tour:ui-latest
+        image: quay.io/datawire/tour:ui-v0.1.0
         ports:
         - name: http
           containerPort: 5000
       - name: quote
-        image: nkrause/tour:quote-latest
+        image: quay.io/datawire/tour:backend-v0.1.0
         ports:
         - name: http
           containerPort: 8080
