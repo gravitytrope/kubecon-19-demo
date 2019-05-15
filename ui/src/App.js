@@ -35,8 +35,8 @@ const routes = [
     component: MultiPlatformPage
   },
   {
-    title: 'Diagnostics',
-    path: '/diagnostics',
+    title: 'Diagnostics and Monitoring',
+    path: '/diagnostics-and-monitoring',
     component: DiagnosticsPage
   },
   {
