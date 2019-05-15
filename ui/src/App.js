@@ -16,6 +16,7 @@ import AmbassadorProPage from './pages/AmbassadorPro';
 import GitHubPage from './pages/GitHub';
 import RateLimitingActionPage from './pages/RateLimitingAction';
 import NextStepsPage from './pages/NextSteps';
+import ServicePreviewPage from './pages/ServicePreview';
 
 const routes = [
   {
@@ -63,6 +64,11 @@ const routes = [
     title: 'Rate Limiting in Action',
     path: '/rate-limit-in-action',
     component: RateLimitingActionPage
+  },
+  {
+    title: 'Service Preview',
+    path: '/service-preview',
+    component: ServicePreviewPage
   },
   {
     title: 'Next Steps',
