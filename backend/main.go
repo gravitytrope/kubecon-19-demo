@@ -1,3 +1,16 @@
+// Copyright 2019 Philip Lombardi
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 package main
 
 import (
@@ -17,8 +30,10 @@ import (
 var port = 8080
 
 const (
-	EnvPORT = "PORT"
-	EnvHOST = "HOST"
+	EnvPORT        = "PORT"
+	EnvHOST        = "HOST"
+	EnvOpenAPIPath = "OPENAPI_PATH"
+	EnvRPS         = "RPS"
 )
 
 type Server struct {
@@ -48,18 +63,22 @@ func (s *Server) GetRPS() int {
 		d := n.Sub(t)
 		if d.Seconds() <= 1 {
 			count += 1
-		} else {
-			skipped += 1
 		}
 	}
 	return count
 }
 
 func (s *Server) GetQuote(w http.ResponseWriter, r *http.Request) {
-	s.reqTimes = append(s.reqTimes, time.Now())
-	if s.GetRPS() >= 100 {
-		http.Error(w, "Request Overload", http.StatusInternalServerError)
-		return
+	if rpsString := os.Getenv(EnvRPS); rpsString != "" {
+		rps, err := strconv.Atoi(rpsString)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		s.reqTimes = append(s.reqTimes, time.Now())
+		if s.GetRPS() >= rps {
+			http.Error(w, "Request Overload", http.StatusInternalServerError)
+			return
+		}
 	}
 
 	quote := s.random.RandomSelectionFromStringSlice(s.quotes)
@@ -75,6 +94,9 @@ func (s *Server) GetQuote(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+
+	w.Header().Set("content-type", "application/json")
+	w.WriteHeader(http.StatusOK)
 
 	if _, err := w.Write(resJson); err != nil {
 		log.Panicln(err)
@@ -102,6 +124,8 @@ func (s *Server) ConfigureRouter() {
 
 	s.router.Get("/", s.GetQuote)
 	s.router.HandleFunc("/ws", s.StreamQuotes)
+
+	s.router.Get(getEnv(EnvOpenAPIPath, "/.ambassador-internal/openapi-docs"), s.GetOpenAPIDocument)
 }
 
 func (s *Server) Start() error {
