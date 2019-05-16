@@ -66,8 +66,8 @@ const ServicePreview = () =>
       <div className="code-block">
         <pre>
           <code>
-            apictl traffic inject tour.yaml -d tour -p 5000 > tour-traffic-sidecar.yaml
-            kubectl apply -f tour-traffic-sidecar.yaml
+{`apictl traffic inject tour.yaml -d tour -p 5000 > tour-traffic-sidecar.yaml
+kubectl apply -f tour-traffic-sidecar.yaml`}
           </code>
         </pre>
       </div>
