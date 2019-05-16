@@ -43,7 +43,6 @@ func (s *Server) GetRPS() int {
 	n := time.Now()
 
 	count := 0
-	skipped := 0
 
 	for _, t := range s.reqTimes {
 		d := n.Sub(t)
@@ -53,8 +52,6 @@ func (s *Server) GetRPS() int {
 			skipped += 1
 		}
 	}
-	log.Println("count:", count)
-	log.Println("skipped:", skipped)
 	return count
 }
 
