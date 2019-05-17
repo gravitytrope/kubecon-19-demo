@@ -7,9 +7,54 @@ import RealTimeGraph from '../../components/RealTimeGraph';
 const RateLimitingAction = () =>
 <div>
   <h1>Rate Limiting in Action</h1>
-  <p>Suppose we have deployed a backend that cannot handle more than 30 requests per second before encountering server errors. In order to protect our entire application from crashing, we need to apply a rate limit on the number of requests to this backend.</p>
-  <p>In Ambassador Pro, this is done by injecting a label onto requests that identify the limit of requests allowed over a period of time. This injection is done via the same declarative configuration model used to expose an endpoint.</p>
-  <p>Observe the <code>Mapping</code> used to expose the <code>/backend</code> endpoint by running <code>kubectl describe svc tour</code> and notice the <code>labels</code> attribute in the <code>backend_mapping</code>.</p>
+
+  <p>Ambassador Pro supports a variety of rate limiting strategies. When you click on the
+  button below, a loop of requests will be sent to the <code>backend</code> service. The
+  graph will plot the HTTP response codes received by the client. Initially, you should
+  see a large number of successful (2xx) requests.</p>
+
+  <p><RealTimeGraph /></p>
+
+  <p>We can now deploy a rate limit to protect our <code>backend</code> service. Create the
+  following rate limit, and save it to a file called <code>backend-rate-limit.yaml</code>:</p>
+
+  <div className="code-block">
+    <pre>
+      <code>
+{`---
+apiVersion: getambassador.io/v1beta1
+kind: RateLimit
+metadata:
+  name: backend-rate-limit
+spec:
+  domain: ambassador
+  limits:
+  - pattern: [{generic_key: "backend"}]
+    rate: 30
+    unit: second
+`}
+        </code>
+    </pre>
+  </div>
+
+  <p>This rule above will tell Ambassador Pro to limit requests that match the "backend" pattern to 30 requests
+  per second. Deploy this rate limit to your cluster:</p>
+
+  <div className="code-block">
+    <pre>
+      <code>
+{`kubectl apply -f ratelimit.yaml`}
+      </code>
+    </pre>
+  </div>
+
+  <h2>Under the hood</h2>
+
+  <p>How does this work? Ambassador Pro lets you inject a label onto requests to a given
+  service. The rate limit can then pattern match on labels to enforce a rate limit. In this
+  case, we've created a label on the <code>backend</code> service.  The <code>Mapping</code>
+  for this service looks like the following:</p>
+
   <div className="code-block">
     <pre>
       <code>
@@ -28,45 +73,11 @@ labels:
       </code>
     </pre>
   </div>
-  <p>This configures Ambassador to label the request with the string <code>backend</code>. Ambassador Pro then uses this label to count the number of requests of this type and determine if it is over the limit.</p>
-  <p>These limits are set by configuring a <code>RateLimit</code> in Ambassador.</p>
-  <div className="code-block">
-    <pre>
-      <code>
-{`---
-apiVersion: getambassador.io/v1beta1
-kind: RateLimit
-metadata:
-  name: backend-rate-limit
-spec:
-  domain: ambassador
-  limits:
-  - pattern: [{generic_key: "backend"}]
-    rate: 30
-    unit: second
-`}
-      </code>
-    </pre>
-  </div>
-  <p>The <code>RateLimit</code> defined above will tell Ambassador Pro to only allow 30 requests per second to the <code>/backend</code> endpoint so we can protect our application from crashes that may occur after exceeding that threshold.</p>
-  <p>Since <code>RateLimit</code>s are exposed as a Custom Resource Definition, simply copy the YAML to a file and apply it with <code>kubectl</code>.</p>
-  <div className="code-block">
-    <pre>
-      <code>
-{`kubectl apply -f ratelimit.yaml`}
-      </code>
-    </pre>
-  </div>
+
+  <p>The label scheme is highly flexible. Labels can also represent specific client IPs, HTTP headers,
+  as well as fixed values. For more information, see the <a href="https://www.getambassador.io/user-guide/advanced-rate-limiting/">advanced
+  rate limiting</a> documentation.</p>
   <br></br>
-  <p><strong>Demo this rate limiting using the chart below.</strong></p>
-  <ol>
-    <li>Click <code>Start Requests</code> to start sending requests to the <code>/backend</code> endpoint.</li>
-    <li>Notice the response codes returned in the graph. You will see that we are sending requests at a much higher rate than the endpoint can handle.</li>
-    <li>Protect your application by applying the <code>RateLimit</code> above.</li>
-    <li>You will now see, instead of the endpoint returning 500 errors, Ambassador is preventing any requests above the 30 request per second limit from reaching the backend and returning a 429 response.</li>
-  </ol>
-  <hr></hr>
-  <RealTimeGraph />
 </div>;
 
 export default RateLimitingAction;
