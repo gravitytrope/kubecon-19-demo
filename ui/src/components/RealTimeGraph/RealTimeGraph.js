@@ -78,9 +78,16 @@ class RealTimeGraph extends Component {
   render() {
     const { data, paused } = this.state;
 
+    const options = {
+      color: {
+        pattern: ['#4caf50', '#2196f3', '#ffeb3b', '#f44336']
+      }
+    };
+
     return (
       <React.Fragment>
         <RTChart
+          chart={options}
           maxValues={10}
           fields={['2xx', '3xx', '4xx', '5xx']}
           data={data}
