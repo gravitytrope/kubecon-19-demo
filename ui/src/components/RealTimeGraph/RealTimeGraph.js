@@ -34,7 +34,7 @@ class RealTimeGraph extends Component {
     const requests = [...Array(100)];
 
     Promise.all(requests.map(() =>
-      fetch('/backend')
+      fetch('/backend/')
         .then(response => Promise.resolve(this.parseResponseStatusCode(response.status)))
         .catch(() => Promise.resolve(400))
     )).then((statuses) => {
