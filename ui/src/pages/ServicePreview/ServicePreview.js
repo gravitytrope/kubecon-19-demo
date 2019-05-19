@@ -81,16 +81,16 @@ kubectl apply -f tour-traffic-sidecar.yaml`}
         </pre>
       </div>
     </li>
-    <li>Finally, we will tell the proxy to intercept all traffic with <code>host: service-preview.k736.net</code> and send it to the version running locally on port 3000
+    <li>Finally, we will tell the proxy to intercept all traffic with <code>host: jane-dev.k736.net</code> and send it to the version running locally on port 3000
       <div className="code-block">
         <pre>
           <code>
-            apictl traffic intercept tour -n :authority -m service-preview.k736.net -t 3000
+            apictl traffic intercept tour -n :authority -m jane-dev.k736.net -t 3000
           </code>
         </pre>
       </div>
     </li>
-    <p>Now, when we go to the URL <a href="https://service-preview.k736.net">https://service-preview.k736.net</a>, we will see
+    <p>Now, when we go to the URL <a href="https://jane-dev.k736.net">https://jane-dev.k736.net</a>, we will see
        the version of the tour we have running locally and any changes we make will
         be seen in the web page.</p>
   </ol>
