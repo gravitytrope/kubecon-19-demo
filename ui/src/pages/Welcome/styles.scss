@@ -1,0 +1,56 @@
+.features {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+    }
+
+    .column-heading {
+        font-size: 20px;
+        line-height: 28px;
+        text-align: center;
+        color: #000;
+        font-style: italic;
+        font-weight: bold;
+        max-width: 275px;
+        margin: 30px auto 0;
+
+        @media screen and (min-width: 768px) {
+            margin: 0 auto;
+        }
+    }
+
+    .feature {
+        color: #000;
+        margin: 20px;
+        height: 136px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 20px 10px 0;
+
+        .icon {
+            width: 120px;
+            display: flex;
+            justify-content: center;
+        }
+
+        > div:not(.icon) {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 20px;
+            line-height: 28px;
+            margin: 0;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 18px;
+            margin: 0;
+        }
+    }
+}

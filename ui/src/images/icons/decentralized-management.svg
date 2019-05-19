@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="45px" viewBox="0 0 42 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>decentralized-management</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="decentralized-management" fill="#000000">
+            <polygon id="Path" points="13.9844 10.1442 21.5263 0.700195 29.0682 10.1442 24.5177 10.1442 24.5177 14.5433 18.5987 14.5433 18.5987 10.1442"></polygon>
+            <polygon id="Path" points="38.2749 32.7279 41.0735 44.4854 28.9883 44.6143 31.7899 41.0284 28.3234 38.3201 31.9675 33.6557 35.434 36.3641"></polygon>
+            <polygon id="Path" points="2.96927 32.7279 0.17062 44.4854 12.2558 44.6143 9.4542 41.0284 12.9207 38.3201 9.2766 33.6557 5.8101 36.3641"></polygon>
+            <path d="M20.9058,29.3092 C22.18,29.3092 23.213,28.2762 23.213,27.002 C23.213,25.7278 22.18,24.6948 20.9058,24.6948 C19.6316,24.6948 18.5986,25.7278 18.5986,27.002 C18.5986,28.2762 19.6316,29.3092 20.9058,29.3092 Z" id="Path" stroke="#000000" stroke-width="2.5"></path>
+        </g>
+    </g>
+</svg>
