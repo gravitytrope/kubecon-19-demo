@@ -123,6 +123,7 @@ func (s *Server) ConfigureRouter() {
 	s.router.Use(middleware.RealIP)
 
 	s.router.Get("/", s.GetQuote)
+	s.router.Get("/get-quote/", s.GetQuote)
 	s.router.HandleFunc("/ws", s.StreamQuotes)
 
 	s.router.Get(getEnv(EnvOpenAPIPath, "/.ambassador-internal/openapi-docs"), s.GetOpenAPIDocument)
@@ -151,6 +152,12 @@ func main() {
 		port = p
 	}
 
+	/*
+	startingQuotes := []string{
+		"Service Preview Rocks!",
+	}
+	*/
+ 
 	startingQuotes := []string{
 		"Abstraction is ever present.",
 		"A late night does not make any sense.",

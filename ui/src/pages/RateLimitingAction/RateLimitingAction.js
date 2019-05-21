@@ -30,7 +30,7 @@ spec:
   domain: ambassador
   limits:
   - pattern: [{generic_key: "backend"}]
-    rate: 30
+    rate: 50
     unit: second
 `}
         </code>
@@ -63,7 +63,7 @@ spec:
 apiVersion: ambassador/v1
 kind: Mapping
 name: backend_mapping
-prefix: /backend
+prefix: /backend/
 service: tour:8080
 labels:
   ambassador:

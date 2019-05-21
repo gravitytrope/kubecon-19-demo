@@ -57,22 +57,77 @@ const ServicePreview = () =>
   </p>
 
   <p>A quick example of this functionality can be seen here. With a few simple 
-     commands, we can view a version of this application running on a client 
+     commands, we can get a version of the backend application running on your 
      machine from a web browser. 
   </p>
 
   <ol>
-    <li>First, we will deploy a version of the application with the <code>traffic-sidecar</code>
+    <li>Clone this repository
       <div className="code-block">
         <pre>
           <code>
-{`apictl traffic inject tour.yaml -d tour -p 5000 > tour-traffic-sidecar.yaml
-kubectl apply -f tour-traffic-sidecar.yaml`}
+{`git clone https://github.com/datawire/tour
+cd tour/`}
           </code>
         </pre>
       </div>
     </li>
-    <li>Next, we will initialize the traffic intercept proxy
+    <li>Run the backend application locally</li>
+      <ol type="a">
+        <li>Edit <code>backend/main.go</code> by removing the original set 
+            of <code>startingQuotes</code>(lines 161-172) and uncommenting the <code>startingQuotes</code> above.
+          <div className="code-block">
+            <pre>
+              <code>
+{`
+...
+  /*
+	startingQuotes := []string{
+		"Service Preview Rocks!",
+	}
+	*/
+
+	startingQuotes := []string{
+		"Abstraction is ever present.",
+		"A late night does not make any sense.",
+		"A principal idea is omnipresent, much like candy.",
+		"Nihilism gambles with lives, happiness, and even destiny itself!",
+		"The light at the end of the tunnel is interdependent on the relatedness of motivation, subcultures, and management.",
+		"Utter nonsense is a storyteller without equal.",
+		"Non-locality is the driver of truth. By summoning, we vibrate.",
+		"A small mercy is nothing at all?",
+		"The last sentence you read is often sensible nonsense.",
+		"668: The Neighbor of the Beast.",
+  }
+...
+`}
+              </code>
+            </pre>
+          </div>
+        </li>
+        <li>Build and run backend application locally on port <code>8080</code>
+          <div className="code-block">
+            <pre>
+              <code>
+{`make run -C backend/`}
+              </code>
+            </pre>
+            From a different terminal, send a request to <code>http://localhost:8080/</code> and you will now always get the response: <code>Service Preview Rocks!</code>
+          </div>
+        </li>
+      </ol>
+    <li><a href="https://www.getambassador.io/docs/dev-guide/service-preview#install-apictl">Install apictl</a></li>
+    <li>Inject and deploy the <code>traffic-sidecar</code> into the tour pod
+      <div className="code-block">
+        <pre>
+          <code>
+{`apictl traffic inject k8s/tour.yaml -d tour -s tour -p 8080 > k8s/tour-traffic-sidecar.yaml
+kubectl apply -f k8s/tour-traffic-sidecar.yaml`}
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li>Initialize the traffic intercept proxy
       <div className="code-block">
         <pre>
           <code>
@@ -81,19 +136,19 @@ kubectl apply -f tour-traffic-sidecar.yaml`}
         </pre>
       </div>
     </li>
-    <li>Finally, we will tell the proxy to intercept all traffic with <code>host: jane-dev.k736.net</code> and send it to the version running locally on port 3000
+    <li>Configure the proxy to intercept all traffic with the header <code>x-user-type: dev</code> and send it to the version running locally on port 8080
       <div className="code-block">
         <pre>
           <code>
-            apictl traffic intercept tour -n :authority -m jane-dev.k736.net -t 3000
+            apictl traffic intercept tour -n x-user-type -m dev -t 8080
           </code>
         </pre>
       </div>
     </li>
-    <p>Now, when we go to the URL <a href="https://jane-dev.k736.net">https://jane-dev.k736.net</a>, we will see
-       the version of the tour we have running locally and any changes we make will
-        be seen in the web page.</p>
+    <li>Click the "Get Quote" button below and now you will only see the quote "Service Preview Rocks!"</li>
   </ol>
+  <br></br>
+  <a href="/backend/" class="quote-btn" target="_blank">Get Quote</a>
 
 </div>;
 

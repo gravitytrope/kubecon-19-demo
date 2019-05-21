@@ -8,7 +8,7 @@ const SingleSignOn = () =>
 
   <p>  
   Ambassador Pro includes integrated support for Single Sign-On via OpenID Connect and OAuth.
-  This support is highly configurable: you can set different authentication policies for
+  This support is highly configurable so you can set different authentication policies for
   different services. For example, you could support GitHub SSO for internally-facing services,
   while requiring Google authentication for externally facing services.
   </p>

@@ -30,9 +30,9 @@ metadata:
 spec:
   domain: ambassador
   limits:
-  - pattern: [{x_limited_user: "false"}, {generic_key: "qotm"}]
-    rate: 5
-    unit: minute
+  - pattern: [{generic_key: "backend"}]
+    rate: 50
+    unit: second
 `}
       </code>
     </pre>

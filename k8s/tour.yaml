@@ -1,33 +1,28 @@
 ---
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: tour-ui
+spec:
+  prefix: /
+  service: tour:5000
+---
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: tour-backend
+spec:
+  prefix: /backend/
+  service: tour:8080
+  labels:
+    ambassador:
+      - request_label:
+        - backend
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: tour
-  annotations:
-    getambassador.io/config: |
-      ---
-      apiVersion: ambassador/v1
-      kind: Mapping
-      name: tour-ui-mapping
-      prefix: /
-      service: tour:5000
-      ---
-      apiVersion: ambassador/v1
-      kind: Mapping
-      name: tour-quote-mapping
-      prefix: /backend
-      service: tour:8080
-      labels:
-        ambassador:
-          - request_label:
-            - backend
-      ---
-      apiVersion: ambassador/v1
-      kind: Mapping
-      name: diag-mapping
-      prefix: /diag/
-      rewrite: /ambassador/v0/diag/
-      service: ambassador-admin:8877
 spec:
   ports:
   - name: ui
@@ -57,12 +52,12 @@ spec:
     spec:
       containers:
       - name: tour-ui
-        image: quay.io/datawire/tour:ui-v0.1.0
+        image: quay.io/datawire/tour:ui-0.1.5
         ports:
         - name: http
           containerPort: 5000
       - name: quote
-        image: quay.io/datawire/tour:backend-v0.1.0
+        image: quay.io/datawire/tour:backend-0.1.5
         ports:
         - name: http
           containerPort: 8080
