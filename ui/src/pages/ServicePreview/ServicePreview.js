@@ -136,19 +136,25 @@ kubectl apply -f k8s/tour-traffic-sidecar.yaml`}
         </pre>
       </div>
     </li>
-    <li>Configure the proxy to intercept all traffic with the header <code>x-user-type: dev</code> and send it to the version running locally on port 8080
+    <li>Configure the proxy to intercept all traffic with the header <code>x-user: dev</code> and send it to the version running locally on port 8080
       <div className="code-block">
         <pre>
           <code>
-            apictl traffic intercept tour -n x-user-type -m dev -t 8080
+            apictl traffic intercept tour -n x-user -m dev -t 8080
           </code>
         </pre>
       </div>
     </li>
-    <li>Click the "Get Quote" button below and now you will only see the quote "Service Preview Rocks!"</li>
+    <li>From another terminal window, send a <code>cURL</code> request to <code>/backend/</code> with the header <code>x-user: dev</code>
+      <div className="code-block">
+        <pre>
+          <code>
+            curl -v -H "x-user: dev" http://{`{AMBASSADOR_IP}`}/backend/
+          </code>
+        </pre>
+      </div>
+    </li>
   </ol>
-  <br></br>
-  <a href="/backend/" class="quote-btn" target="_blank">Get Quote</a>
 
 </div>;
 
