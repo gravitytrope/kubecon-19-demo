@@ -74,31 +74,14 @@ cd tour/`}
     </li>
     <li>Run the backend application locally</li>
       <ol type="a">
-        <li>Edit <code>backend/main.go</code> by removing the original set 
-            of <code>startingQuotes</code>(lines 161-172) and uncommenting the <code>startingQuotes</code> above.
+        <li>Edit <code>backend/main.go</code> by commenting out line 84 and uncommenting line 85 so it always returns the quote "Service Preview Rocks!"
           <div className="code-block">
             <pre>
               <code>
 {`
 ...
-  /*
-	startingQuotes := []string{
-		"Service Preview Rocks!",
-	}
-	*/
-
-	startingQuotes := []string{
-		"Abstraction is ever present.",
-		"A late night does not make any sense.",
-		"A principal idea is omnipresent, much like candy.",
-		"Nihilism gambles with lives, happiness, and even destiny itself!",
-		"The light at the end of the tunnel is interdependent on the relatedness of motivation, subcultures, and management.",
-		"Utter nonsense is a storyteller without equal.",
-		"Non-locality is the driver of truth. By summoning, we vibrate.",
-		"A small mercy is nothing at all?",
-		"The last sentence you read is often sensible nonsense.",
-		"668: The Neighbor of the Beast.",
-  }
+    quote := s.random.RandomSelectionFromStringSlice(s.quotes)
+    //quote := "Service Preview Rocks!"
 ...
 `}
               </code>

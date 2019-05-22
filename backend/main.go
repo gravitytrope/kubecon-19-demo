@@ -81,7 +81,8 @@ func (s *Server) GetQuote(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	quote := s.random.RandomSelectionFromStringSlice(s.quotes)
+	//quote := s.random.RandomSelectionFromStringSlice(s.quotes)
+	quote := "Service Preview Rocks!"
 	res := QuoteResult{
 		Server: s.id,
 		Quote:  quote,
@@ -152,12 +153,6 @@ func main() {
 		port = p
 	}
 
-	/*
-	startingQuotes := []string{
-		"Service Preview Rocks!",
-	}
-	*/
- 
 	startingQuotes := []string{
 		"Abstraction is ever present.",
 		"A late night does not make any sense.",
