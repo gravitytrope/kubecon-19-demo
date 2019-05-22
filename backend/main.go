@@ -118,6 +118,10 @@ func (s *Server) StreamQuotes(w http.ResponseWriter, r *http.Request) {
 	go client.writePump()
 }
 
+func (s *Server) HealthCheck(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
+
 func (s *Server) ConfigureRouter() {
 	s.router.Use(middleware.Recoverer)
 	s.router.Use(middleware.RequestID)
@@ -125,6 +129,7 @@ func (s *Server) ConfigureRouter() {
 
 	s.router.Get("/", s.GetQuote)
 	s.router.Get("/get-quote/", s.GetQuote)
+	s.router.Get("/health", s.HealthCheck)
 	s.router.HandleFunc("/ws", s.StreamQuotes)
 
 	s.router.Get(getEnv(EnvOpenAPIPath, "/.ambassador-internal/openapi-docs"), s.GetOpenAPIDocument)
