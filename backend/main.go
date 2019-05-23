@@ -81,8 +81,8 @@ func (s *Server) GetQuote(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	//quote := s.random.RandomSelectionFromStringSlice(s.quotes)
-	quote := "Service Preview Rocks!"
+	quote := s.random.RandomSelectionFromStringSlice(s.quotes)
+	//quote := "Service Preview Rocks!"
 	res := QuoteResult{
 		Server: s.id,
 		Quote:  quote,
