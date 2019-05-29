@@ -10,11 +10,9 @@ import decentralizedManagementIcon from '../../images/icons/decentralized-manage
 const Welcome = () =>
 <div>
   <h1>Congratulations!</h1>
-  <h2>You've successfully installed the Ambassador API Gateway.</h2>
-
-  <p>
-    Ambassador is an open source, Kubernetes-native API Gateway built on <a href="https://www.envoyproxy.io">Envoy Proxy</a>.
-  </p>
+  <h2>You've successfully installed the Ambassador API Gateway. 
+  Ambassador is an open source, Kubernetes-native API Gateway built on <a href="https://www.envoyproxy.io">Envoy Proxy</a>.
+  </h2>
 
   <p>
     With Ambassador you can:

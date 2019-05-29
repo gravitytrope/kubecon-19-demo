@@ -56,14 +56,14 @@ const routes = [
     component: AmbassadorProPage
   },
   {
-    title: 'GitHub Single Sign-On',
-    path: '/github-sso',
-    component: GitHubPage
-  },
-  {
     title: 'Rate Limiting in Action',
     path: '/rate-limit-in-action',
     component: RateLimitingActionPage
+  },
+  {
+    title: 'GitHub Single Sign-On',
+    path: '/github-sso',
+    component: GitHubPage
   },
   {
     title: 'Service Preview',

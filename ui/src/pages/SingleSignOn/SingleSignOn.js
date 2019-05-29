@@ -55,8 +55,8 @@ spec:
   </div>
 
   <p>
-    The configuration above runs the Keycloak SSO filter for requests to `/tour/private`, while running the
-    basic authentication filter for requests to `/tour/internal`.
+    The configuration above runs the Keycloak SSO filter for requests to <code>/tour/private</code>, while running the
+    basic authentication filter for requests to <code>/tour/internal</code>.
   </p>
 
   <p>
