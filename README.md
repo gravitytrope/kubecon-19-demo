@@ -13,4 +13,4 @@ Travis will then push two images:
 - `quay.io/datawire/tour:ui-$TAG`
 - `quay.io/datawire/tour:quote-$TAG`
 
-**Note:** Tags should be of form vXX.XX.XX
+**Note:** Tags should be of form XX.YY.ZZ.
