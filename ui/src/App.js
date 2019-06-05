@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import './App.scss';
 
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import BottomNav from './components/BottomNav';
+
+import AnalyticsTracker from './components/AnalyticsTracker';
 
 import WelcomePage from './pages/Welcome';
 import DeclarativeConfigurationPage from './pages/DeclarativeConfiguration';
@@ -90,7 +93,7 @@ function App() {
                 key={index}
                 path={route.path}
                 exact={route.exact}
-                component={route.component}
+                component={AnalyticsTracker(route.component)}
               />
             )
           }

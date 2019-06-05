@@ -56,6 +56,7 @@ spec:
     from <code>/</code> to <code>service: tour:5000</code> so requests
     to <code>http://{`{AMBASSADOR_IP}`}/</code> are routed to this React application.
     An example of this using a <code>Mapping</code> custom resource is shown below:
+  </p>
     <div className="code-block">
       <pre>
         <code>
@@ -71,6 +72,7 @@ spec:
         </code>
     </pre>
   </div>
+  <p>
     Ambassador exposes a rich set of configuration options for the mapping object,
     including timeouts, load balancing options, traffic weights, and more. For details,
     see <a href="https://www.getambassador.io/reference/mappings">the mapping documentation</a>.

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const GitHub = () =>
 <div>
@@ -104,7 +104,7 @@ spec:
      <li>After creating the <code>Filter</code> and <code>FilterPolicy</code> above, click the "Get Quote" button below and log in with GitHub to get your quote.</li>
   </ol>
   
-  <a href="/backend/get-quote/" class="quote-btn" target="_blank">Get Quote</a>
+  <a href="/backend/get-quote/" className={styles.Button} target="_blank">Get Quote</a>
 
 </div>;
 
