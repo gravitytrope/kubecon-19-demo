@@ -122,6 +122,11 @@ func (s *Server) HealthCheck(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+func (s *Server) Debug(w http.ResponseWriter, r *http.Request) {
+	log.Println(r.Header)
+	w.WriteHeader(http.StatusOK)
+}
+
 func (s *Server) ConfigureRouter() {
 	s.router.Use(middleware.Recoverer)
 	s.router.Use(middleware.RequestID)
@@ -129,6 +134,7 @@ func (s *Server) ConfigureRouter() {
 
 	s.router.Get("/", s.GetQuote)
 	s.router.Get("/get-quote/", s.GetQuote)
+	s.router.Get("/debug/", s.Debug)
 	s.router.Get("/health", s.HealthCheck)
 	s.router.HandleFunc("/ws", s.StreamQuotes)
 
