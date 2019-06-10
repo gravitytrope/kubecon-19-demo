@@ -22,6 +22,7 @@ import (
 	"github.com/plombardi89/gozeug/randomzeug"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strconv"
 	"time"
@@ -52,6 +53,16 @@ type QuoteResult struct {
 	Server string    `json:"server"`
 	Quote  string    `json:"quote"`
 	Time   time.Time `json:"time"`
+}
+
+type DebugInfo struct {
+	Server     string              `json:"server"`
+	Time       time.Time           `json:"time"`
+	Host       string              `json:"host"`
+	Proto      string              `json:"proto"`
+	URL        *url.URL            `json:"url"`
+	RemoteAddr string              `json:"remoteaddr"`
+	Headers    map[string][]string `json:"headers`
 }
 
 func (s *Server) GetRPS() int {
@@ -122,6 +133,32 @@ func (s *Server) HealthCheck(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+func (s *Server) Debug(w http.ResponseWriter, r *http.Request) {
+	hdrs := DebugInfo{
+		Server:     s.id,
+		Time:       time.Now().UTC(),
+		Host:       r.Host,
+		Proto:      r.Proto,
+		URL:        r.URL,
+		RemoteAddr: r.RemoteAddr,
+		Headers:    r.Header,
+	}
+
+	hdrsJson, err := json.MarshalIndent(hdrs, "", "    ")
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("content-type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	if _, err := w.Write(hdrsJson); err != nil {
+		log.Panicln(err)
+	}
+}
+
 func (s *Server) ConfigureRouter() {
 	s.router.Use(middleware.Recoverer)
 	s.router.Use(middleware.RequestID)
@@ -129,6 +166,7 @@ func (s *Server) ConfigureRouter() {
 
 	s.router.Get("/", s.GetQuote)
 	s.router.Get("/get-quote/", s.GetQuote)
+	s.router.Get("/debug/", s.Debug)
 	s.router.Get("/health", s.HealthCheck)
 	s.router.HandleFunc("/ws", s.StreamQuotes)
 
