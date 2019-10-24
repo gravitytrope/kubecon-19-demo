@@ -11,6 +11,9 @@ BINARY_BASENAME=qotm
 DOCKER_REPO ?= localhost:31000/tour
 TAG ?= latest
 
+# default KUBECONFIG file to mount in the UI conatiner when running standalone
+KUBECONFIG ?= $(HOME)/.kube/config
+
 .PHONY: all image.build.image.build.push clean fmt run test.fast
 
 all: clean fmt test.fast build
@@ -33,7 +36,10 @@ image.push: image.build
 	$(DOCKER_REPO):backend-$(TAG)
 
 image.run: image.build
-	docker run --rm -ti -p 8080:8080 \
+	docker run --rm -ti \
+	-p 8080:8080 \
+	--mount type=bind,source=$(KUBECONFIG),target=/kubeconfig \
+	-e KUBECONFIG=/kubeconfig \
 	$(DOCKER_REPO):backend-$(TAG)
 
 clean:

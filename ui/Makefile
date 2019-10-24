@@ -23,4 +23,3 @@ image.build:
 image.push: image.build
 	docker push \
 	$(DOCKER_REPO):ui-$(TAG)
-
