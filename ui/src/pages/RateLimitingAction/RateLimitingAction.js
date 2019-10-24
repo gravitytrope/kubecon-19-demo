@@ -13,7 +13,9 @@ const RateLimitingAction = () =>
                 <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack"/>
             </p>
 
-            <h1>Rate Limiting in Action</h1>
+            <center>
+              <h1>Rate Limiting in Action</h1>
+            </center>
             <section className={styles.container}>
 
                 <div className={styles.half}><RealTimeGraph/></div>
@@ -21,8 +23,7 @@ const RateLimitingAction = () =>
                 <div className={[styles.half, "code-block"].join(' ')}>
                   <pre>
                     <code>
-{`---
-apiVersion: getambassador.io/v1beta1
+{`apiVersion: getambassador.io/v1beta1
 kind: RateLimit
 metadata:
   name: backend-rate-limit
@@ -35,14 +36,13 @@ spec:
 `}
                     </code>
                   </pre>
+                  <br/>
                     <button className={styles.Button}>
                         kubectl apply -f ratelimit.yaml
                     </button>
 
                 </div>
             </section>
-
-            <br/>
         </div>
 ;
 
