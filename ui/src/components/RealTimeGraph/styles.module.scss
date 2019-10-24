@@ -14,3 +14,18 @@
         background: darken(#f9634e, 10%);
     }
 }
+
+.container {
+    display: flex;
+}
+
+.half {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
