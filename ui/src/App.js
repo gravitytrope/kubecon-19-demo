@@ -19,6 +19,7 @@ const routes = [
   {
     title: 'Rate Limiting',
     path: '/',
+    exact: true,
     component: RateLimitingActionPage
   },
   {
@@ -56,7 +57,6 @@ function App() {
             )
           }
         </div>
-        <BottomNav routes={routes} />
       </Router>
     </div>
   );
