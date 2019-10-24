@@ -5,7 +5,6 @@ import styles from './styles.module.scss';
 
 import Link from '../Link';
 
-const ambassadorLogo = require('../../images/ambassador-logo.svg');
 const datawireLogo = require('../../images/datawire-logo.svg');
 
 class Header extends Component {
