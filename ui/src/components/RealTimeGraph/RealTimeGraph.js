@@ -10,7 +10,7 @@ class RealTimeGraph extends Component {
 
     this.state = {
       data: null,
-      paused: true,
+      paused: false,
     };
   }
 
