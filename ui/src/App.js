@@ -10,73 +10,31 @@ import BottomNav from './components/BottomNav';
 import AnalyticsTracker from './components/AnalyticsTracker';
 
 import WelcomePage from './pages/Welcome';
-import DeclarativeConfigurationPage from './pages/DeclarativeConfiguration';
-import MultiPlatformPage from './pages/MultiPlatform';
-import DiagnosticsPage from './pages/Diagnostics';
-import SingleSignOnPage from './pages/SingleSignOn';
-import RateLimitingPage from './pages/RateLimiting';
-import AmbassadorProPage from './pages/AmbassadorPro';
-import GitHubPage from './pages/GitHub';
 import RateLimitingActionPage from './pages/RateLimitingAction';
-import NextStepsPage from './pages/NextSteps';
-import ServicePreviewPage from './pages/ServicePreview';
+import AuthenticationPage from './pages/Authentication';
+import DevPortalPage from './pages/DevPortal';
+import SelfServicePage from './pages/SelfService';
 
 const routes = [
   {
-    path: '/',
-    title: 'Welcome',
-    exact: true,
-    component: WelcomePage
-  },
-  {
-    title: 'Declarative Configuration',
-    path: '/declarative-configuration',
-    component: DeclarativeConfigurationPage
-  },
-  {
-    title: 'Multi Platform',
-    path: '/multi-platform',
-    component: MultiPlatformPage
-  },
-  {
-    title: 'Diagnostics and Monitoring',
-    path: '/diagnostics-and-monitoring',
-    component: DiagnosticsPage
-  },
-  {
-    title: 'Single Sign-On',
-    path: '/single-sign-on',
-    component: SingleSignOnPage
-  },
-  {
     title: 'Rate Limiting',
-    path: '/rate-limiting',
-    component: RateLimitingPage
-  },
-  {
-    title: 'Ambassador Pro',
-    path: '/ambassador-pro',
-    component: AmbassadorProPage
-  },
-  {
-    title: 'Rate Limiting in Action',
-    path: '/rate-limit-in-action',
+    path: '/',
     component: RateLimitingActionPage
   },
   {
-    title: 'GitHub Single Sign-On',
-    path: '/github-sso',
-    component: GitHubPage
+    title: 'Authentication',
+    path: '/authentication',
+    component: AuthenticationPage
   },
   {
-    title: 'Service Preview',
-    path: '/service-preview',
-    component: ServicePreviewPage
+    title: 'Dev Portal',
+    path: '/dev-portal',
+    component: DevPortalPage
   },
   {
-    title: 'Next Steps',
-    path: '/next-steps',
-    component: NextStepsPage
+    title: 'Self Service',
+    path: '/self-service',
+    component: SelfServicePage
   }
 ];
 
