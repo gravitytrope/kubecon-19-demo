@@ -17,10 +17,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/go-chi/chi"
-	"github.com/go-chi/chi/middleware"
-	"github.com/gorilla/websocket"
-	"github.com/plombardi89/gozeug/randomzeug"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -29,6 +25,11 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+	"github.com/gorilla/websocket"
+	"github.com/plombardi89/gozeug/randomzeug"
 )
 
 var port = 8080
@@ -186,6 +187,30 @@ func (s *Server) Debug(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// KubectlApply aplies a manifest by executing a local `kubectl`.
+// This endpoint will be used by some frontend demos for loading
+// manifests in the kubernetes cluster.
+func (s *Server) KubectlApply(w http.ResponseWriter, r *http.Request) {
+	var bBytes []byte
+	bBytes, _ = ioutil.ReadAll(r.Body)
+	yaml := string(bBytes)
+
+	log.Printf("Received manifest:\n%s", yaml)
+
+	kubeconfig := getEnv("KUBECONFIG", "")
+	if kubeconfig != "" {
+		log.Printf("Using KUBECONFIG: %q", kubeconfig)
+	}
+
+	if err := kubectlApply(yaml, kubeconfig, ""); err != nil {
+		log.Printf("error when applying manifest: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
 func (s *Server) ConfigureRouter() {
 	s.router.Use(middleware.Recoverer)
 	s.router.Use(middleware.RequestID)
@@ -197,6 +222,7 @@ func (s *Server) ConfigureRouter() {
 	s.router.Post("/debug/", s.Debug)
 	s.router.Delete("/debug/", s.Debug)
 	s.router.Put("/debug/", s.Debug)
+	s.router.Post("/kubectl/", s.KubectlApply)
 	s.router.Get("/health", s.HealthCheck)
 	s.router.HandleFunc("/ws", s.StreamQuotes)
 
