@@ -6,6 +6,6 @@ services:
 
 deploy:
   - provider: script
-    script: bash travis-build.sh
+    script: make ci
     on:
       tags: true
