@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 
-DOCKER_REPO ?= localhost:31000/tour
+DOCKER_REPO ?= localhost:31000/demo
 TAG ?= latest
 
 .PHONY: diff build docker.tag docker.commit image.push

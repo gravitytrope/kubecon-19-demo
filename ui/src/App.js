@@ -5,11 +5,9 @@ import './App.scss';
 
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import BottomNav from './components/BottomNav';
 
 import AnalyticsTracker from './components/AnalyticsTracker';
 
-import WelcomePage from './pages/Welcome';
 import RateLimitingActionPage from './pages/RateLimitingAction';
 import AuthenticationPage from './pages/Authentication';
 import DevPortalPage from './pages/DevPortal';
