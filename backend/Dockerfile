@@ -15,8 +15,13 @@
 FROM golang:1.12 as foundation
 
 WORKDIR /build
+
+RUN curl --fail -L https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/linux/amd64/kubectl -o /usr/bin/kubectl && \
+    chmod a+x /usr/bin/kubectl
+
 COPY go.mod .
 COPY go.sum .
+
 RUN go mod download
 
 FROM foundation as builder
@@ -26,6 +31,7 @@ RUN make
 
 FROM gcr.io/distroless/base as runtime
 
+COPY --from=builder /usr/bin/kubectl /usr/bin/kubectl
 COPY --from=builder /build/bin/qotm-linux-amd64 /bin/qotm
 
 ENTRYPOINT ["/bin/qotm"]

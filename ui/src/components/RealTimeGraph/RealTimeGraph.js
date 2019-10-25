@@ -85,21 +85,17 @@ class RealTimeGraph extends Component {
     };
 
     return (
-      <React.Fragment>
+      <React.Fragment className={styles.GraphWithButton}>
         <RTChart
           chart={options}
           maxValues={10}
           fields={['2xx', '3xx', '4xx', '5xx']}
           data={data}
         />
-        <button
-          className={styles.Button}
-          onClick={this.toggle}
-        >
+        <button className={styles.Button} onClick={this.toggle}>
           {paused ? 'Start' : 'Stop'} Requests
         </button>
       </React.Fragment>
-
     );
   }
 }

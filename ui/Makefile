@@ -14,13 +14,12 @@ clean:
 	rm -rf build
 	rm package-lock.json
 
-build.image:
+image.build:
 	docker build \
 	-t $(DOCKER_REPO):ui-$(TAG) \
 	-f Dockerfile \
 	.
 
-image.push: build.image
+image.push: image.build
 	docker push \
 	$(DOCKER_REPO):ui-$(TAG)
-

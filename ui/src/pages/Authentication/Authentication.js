@@ -1,24 +1,11 @@
 import React from 'react';
 
+import ManifestArea from '../../components/ManifestArea';
+
 import styles from './styles.module.scss';
 import aeslogo from "../../images/aes-logo.png";
 
-const Authentication = () =>
-        <div>
-
-            <p>
-                <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack"/>
-            </p>
-
-            <center>
-                <h1>Authentication in Action</h1>
-            </center>
-            <section className={styles.container}>
-
-                <div className={[styles.half, "code-block"].join(' ')}>
-                  <pre>
-                    <code>
-{`---
+const manifestAuth1 = `---
 apiVersion: v1
 kind: Service
 metadata:
@@ -62,20 +49,9 @@ spec:
           limits:
             cpu: "0.1"
             memory: 100Mi
-`}
-                    </code>
-                  </pre>
-                    <br/>
-                    <button className={styles.Button}>
-                        kubectl apply -f example-auth.yaml
-                    </button>
+`;
 
-                </div>
-
-                <div className={[styles.half, "code-block"].join(' ')}>
-                  <pre>
-                    <code>
-{`---
+const manifestAuth2 = `---
 apiVersion: getambassador.io/v1
 kind: AuthService
 metadata:
@@ -100,20 +76,24 @@ spec:
   - port: 3000
     name: http-example-auth
     targetPort: http-api
-`}
-                    </code>
-                  </pre>
-                    <br/>
-                    <button className={styles.Button}>
-                        kubectl apply -f auth-service.yaml
-                    </button>
+`;
 
-                    <br/>
-                    <br/>
-                    <p> Now, refresh the page! </p>
+const Authentication = () =>
+        <div>
+            <p>
+                <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack"/>
+            </p>
 
+            <center>
+                <h1>Authentication in Action</h1>
+            </center>
+            <section className={styles.container}>
+                <div className={styles.half}>
+                  <ManifestArea manifest={manifestAuth1} />
                 </div>
-
+                <div className={styles.half}>
+                  <ManifestArea manifest={manifestAuth2} />
+                </div>
             </section>
         </div>
 ;

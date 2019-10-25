@@ -14,9 +14,13 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	"github.com/plombardi89/gozeug/randomzeug"
+	"log"
 	"os"
+	"os/exec"
+
+	"github.com/plombardi89/gozeug/randomzeug"
 )
 
 var adjectives = []string{
@@ -184,4 +188,28 @@ func getEnv(name, fallback string) string {
 	}
 
 	return res
+}
+
+func kubectlApply(yaml, kubeconfig, namespace string) error {
+	args := []string{"apply", "-f", "-"}
+
+	if kubeconfig != "" {
+		args = append(args, "--kubeconfig", kubeconfig)
+	}
+
+	if namespace != "" {
+		args = append(args, "--namespace", namespace)
+	}
+
+	log.Print("Running kubectl command")
+	cmd := exec.Command("kubectl", args...)
+
+	var errBuffer bytes.Buffer
+	cmd.Stderr = &errBuffer
+	cmd.Stdin = bytes.NewBuffer([]byte(yaml))
+
+	_, err := cmd.Output()
+	log.Printf("kubectl applied: output: %s", errBuffer.String())
+
+	return err
 }

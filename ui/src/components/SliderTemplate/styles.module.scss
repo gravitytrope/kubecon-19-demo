@@ -1,0 +1,31 @@
+.ManifestArea {
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 16px;
+    line-height: 45px;
+    font-weight: bold;
+    padding: 0 30px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    height: 200px;
+    width: 200px;
+}
+
+.Button {
+    background: #f9634e;
+    border: none;
+    color: white !important;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 45px;
+    outline: none;
+    padding: 0 30px;
+    text-decoration: none !important;
+
+    &:hover {
+        background: darken(#f9634e, 10%);
+    }
+}
