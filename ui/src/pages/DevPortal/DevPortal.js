@@ -1,54 +1,38 @@
 import React from 'react';
+import styles from './styles.module.scss';
+import aeslogo from "../../images/aes-logo.png";
 
-import './styles.scss';
+function handleClick() {
+    window.location.href="/docs/"
+}
 
-import RealTimeGraph from '../../components/RealTimeGraph';
+const DevPortal = () =>
+    <div>
 
-const RateLimitingAction = () =>
-<div>
-  <h1>Rate Limiting in Action</h1>
+        <p>
+            <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack"/>
+        </p>
 
-  <p>Ambassador Pro supports a variety of rate limiting strategies. When you click on the
-  button below, a loop of requests will be sent to the <code>backend</code> service. The
-  graph will plot the HTTP response codes received by the client. Initially, you should
-  see a large number of successful (2xx) requests.</p>
+        <center>
+            <h1>Dev Portal in Action</h1>
+        </center>
+        <section className={styles.container}>
 
-  <p><RealTimeGraph /></p>
+            <div className={styles.center}>
+                <br/>
+                <button
+                    className={styles.Button}
+                    onClick={handleClick}
+                >
+                    Go to Dev Portal
+                </button>
 
-  <p>We can now deploy a rate limit to protect our <code>backend</code> service. Create the
-  following rate limit, and save it to a file called <code>backend-rate-limit.yaml</code>:</p>
+                <br/>
+                <br/>
+            </div>
 
-  <div className="code-block">
-    <pre>
-      <code>
-{`---
-apiVersion: getambassador.io/v1beta1
-kind: RateLimit
-metadata:
-  name: backend-rate-limit
-spec:
-  domain: ambassador
-  limits:
-  - pattern: [{generic_key: "backend"}]
-    rate: 50
-    unit: second
-`}
-        </code>
-    </pre>
-  </div>
+        </section>
+    </div>
+;
 
-  <p>This rule above will tell Ambassador Pro to limit requests that match the "backend" pattern to 30 requests
-  per second. Deploy this rate limit to your cluster:</p>
-
-  <div className="code-block">
-    <pre>
-      <code>
-{`kubectl apply -f ratelimit.yaml`}
-      </code>
-    </pre>
-  </div>
-
-  <br></br>
-</div>;
-
-export default RateLimitingAction;
+export default DevPortal;
