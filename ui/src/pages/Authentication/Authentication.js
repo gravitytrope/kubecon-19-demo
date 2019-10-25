@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: example-auth
-        image: datawire/ambassador-auth-service:2.0.0
+        image: containscafeine/ambassador-auth-service:latest
         env:
         - name: AUTH_PATH
           value: /extauth/authentication

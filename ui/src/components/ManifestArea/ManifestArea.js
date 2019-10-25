@@ -13,7 +13,10 @@ import styles from './styles.module.scss';
 // the URL where the backend will be listening for POSTs
 // the body posted will be used for running `kubectl apply`
 // ie, 'http://127.0.0.1:5000'
-const baseURL = process.env.REACT_APP_BACKEND_URL_BASE;
+var baseURL='http://127.0.0.1:8080';
+if('REACT_APP_BACKEND_URL_BASE' in process.env) {
+  baseURL=process.env.REACT_APP_BACKEND_URL_BASE
+}
 
 class ManifestArea extends Component {
   constructor(props) {
@@ -31,7 +34,7 @@ class ManifestArea extends Component {
   }
 
   handleSubmit(event) {
-    var fullURL = baseURL + '/kubectl/'
+    var fullURL = baseURL + '/kubectl/';
 
     alert('The manifest has been submitted to ' + fullURL);
 
@@ -39,7 +42,7 @@ class ManifestArea extends Component {
     fetch(fullURL, {
       method: 'POST',
       body: this.props.manifest // maybe we need to use JSON.stringify()
-    })
+    });
 
     event.preventDefault();
   }
