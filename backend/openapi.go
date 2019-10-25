@@ -54,6 +54,44 @@ var openapiDocument = `
 				}
 			}
 		},
+        "/get-quote/": {
+			"get": {
+				"summary": "Alias of /. Return a randomly selected quote.",
+				"responses": {
+					"200": {
+						"description": "A JSON object with a quote and some additional metadata.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"server": {"type": "string"},
+										"quote": {"type": "string"},
+										"time": {"type": "string"}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+        "/health": {
+			"get": {
+				"summary": "Return 200 OK when application is healthy",
+				"responses": {
+					"200": {
+						"description": "When application is healthy, HTTP status code 200 is returned. No content in body.",
+						"content": {}
+					}
+				}
+			}
+		},
+        "/ws": {
+			"get": {
+				"summary": "Stream quotes over a websocket connection"
+		    }
+		},
 		"/debug/": {
 			"get": {
 				"summary": "Return debug information about the request.",

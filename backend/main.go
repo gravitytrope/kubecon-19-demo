@@ -195,8 +195,8 @@ func (s *Server) ConfigureRouter() {
 	s.router.Get("/get-quote/", s.GetQuote)
 	s.router.Get("/debug/*", s.Debug)
 	s.router.Post("/debug/", s.Debug)
-  s.router.Delete("/debug/", s.Debug)
-  s.router.Put("/debug/", s.Debug)
+	s.router.Delete("/debug/", s.Debug)
+	s.router.Put("/debug/", s.Debug)
 	s.router.Get("/health", s.HealthCheck)
 	s.router.HandleFunc("/ws", s.StreamQuotes)
 
