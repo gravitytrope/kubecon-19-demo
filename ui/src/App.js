@@ -31,11 +31,6 @@ const routes = [
     title: 'Dev Portal',
     path: '/dev-portal',
     component: DevPortalPage
-  },
-  {
-    title: 'Self Service',
-    path: '/self-service',
-    component: SelfServicePage
   }
 ];
 

@@ -1,0 +1,8 @@
+- Deploy httpbin.yaml
+- Run the pinger - `./test-self-service.sh https://172.17.0.2/qotm-1/ https://172.17.0.2/httpbin/ip`
+- Demonstrate that QOTM service is not yet available but httpbin is working fine
+- Deploy qotm.yaml
+- Demonstrate that Ambassador is self-service and QOTM is now ready
+- Make changes to qotm.yaml, expose `/quote/2` path to another /qotm-2/
+- Apply qotm.yaml again
+- Demonstrate that Ambassador is self-service
