@@ -4,8 +4,10 @@ import 'c3/c3.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 import styles from './styles.module.scss';
+
 
 
 class SliderTemplate extends Component {
@@ -21,20 +23,14 @@ class SliderTemplate extends Component {
     this.state.callback(this.props.template.replace("[VALUE]", this.props.default))
   }
 
-  handleSubmit(event) {
-    this.state.callback(this.props.template.replace("[VALUE]", event.target.value))
+  handleSubmit(event, value) {
+    this.state.callback(this.props.template.replace("[VALUE]", value))
     event.preventDefault();
   }
 
   render() {
-    const classes = makeStyles({
-      root: {
-        height: "90%"
-      },
-    });
-
     return (
-      <Box height="100%" width="50px">
+      <Box height="300px" width="50px" justify="flex-end" alignItems="flex-start">
         <Slider
           orientation="vertical"
           onChangeCommitted={this.handleSubmit}

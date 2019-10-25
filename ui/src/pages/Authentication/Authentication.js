@@ -1,4 +1,7 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
 import ManifestArea from '../../components/ManifestArea';
 
@@ -78,24 +81,36 @@ spec:
     targetPort: http-api
 `;
 
-const Authentication = () =>
-        <div>
-            <p>
-                <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack"/>
-            </p>
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+}));
 
-            <center>
-                <h1>Authentication in Action</h1>
-            </center>
-            <section className={styles.container}>
-                <div className={styles.half}>
-                  <ManifestArea manifest={manifestAuth1} />
-                </div>
-                <div className={styles.half}>
-                  <ManifestArea manifest={manifestAuth2} />
-                </div>
-            </section>
-        </div>
+const Authentication = () =>
+  <div>
+    <div className={useStyles.root}>
+      <Grid container spacing={10}>
+        <Grid item xs={12}>
+          <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack" />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography variant="h3">
+            <center>Authentication in Action</center>
+          </Typography>
+        </Grid>
+
+        <Grid item xs={6}>
+          <ManifestArea manifest={manifestAuth1} rows={40} />
+        </Grid>
+
+        <Grid item xs={6}>
+          <ManifestArea manifest={manifestAuth2} rows={40} />
+        </Grid>
+      </Grid>
+    </div>
+  </div>
 ;
 
 export default Authentication;

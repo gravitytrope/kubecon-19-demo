@@ -1,8 +1,8 @@
 FROM node:12.13.0-alpine
 
-WORKDIR /tour
+WORKDIR /demo
 
-COPY . /tour
+COPY . /demo
 
 RUN npm install
 RUN npm run build

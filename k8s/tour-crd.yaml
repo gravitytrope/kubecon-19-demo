@@ -2,18 +2,18 @@
 apiVersion: getambassador.io/v1
 kind: Mapping
 metadata:
-  name: tour-ui
+  name: demo-ui
 spec:
   prefix: /
-  service: tour:5000
+  service: demo:5000
 ---
 apiVersion: getambassador.io/v1
 kind: Mapping
 metadata:
-  name: tour-backend
+  name: demo-backend
 spec:
   prefix: /backend/
-  service: tour:8080
+  service: demo:8080
   labels:
     ambassador:
       - request_label:
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tour
+  name: demo
 spec:
   ports:
   - name: ui
@@ -32,32 +32,32 @@ spec:
     port: 8080
     targetPort: 8080
   selector:
-    app: tour
+    app: demo
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tour
+  name: demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tour
+      app: demo
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: tour
+        app: demo
     spec:
       containers:
-      - name: tour-ui
-        image: quay.io/datawire/tour:ui-0.1.5
+      - name: demo-ui
+        image: quay.io/datawire/demo:ui-0.1.5
         ports:
         - name: http
           containerPort: 5000
       - name: quote
-        image: quay.io/datawire/tour:backend-0.1.5
+        image: quay.io/datawire/demo:backend-0.1.5
         ports:
         - name: http
           containerPort: 8080
