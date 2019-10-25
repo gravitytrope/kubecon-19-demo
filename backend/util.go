@@ -202,7 +202,7 @@ func kubectlApply(yaml, kubeconfig, namespace string) error {
 	}
 
 	log.Print("Running kubectl command")
-	cmd := exec.Command("kubectl", args...)
+	cmd := exec.Command("/usr/bin/kubectl", args...)
 
 	var errBuffer bytes.Buffer
 	cmd.Stderr = &errBuffer

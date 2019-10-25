@@ -66,19 +66,6 @@ spec:
   - "x-qotm-session"
   allowed_authorization_headers:
   - "x-qotm-session"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: example-auth
-spec:
-  type: ClusterIP
-  selector:
-    app: example-auth
-  ports:
-  - port: 3000
-    name: http-example-auth
-    targetPort: http-api
 `;
 
 const useStyles = makeStyles(theme => ({
