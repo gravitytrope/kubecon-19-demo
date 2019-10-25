@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import 'c3/c3.css';
 
 import Box from '@material-ui/core/Box';
@@ -9,16 +10,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import styles from './styles.module.scss';
 
-const defaultCols = 60;
-const defaultRows = 17;
+// the URL where the backend will be listening for POSTs
+// the body posted will be used for running `kubectl apply`
+// ie, 'http://127.0.0.1:5000'
+const baseURL = process.env.REACT_APP_BACKEND_URL_BASE;
 
 class ManifestArea extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: this.props.manifest,
-      cols: (this.props.cols == undefined ? defaultCols : this.props.cols),
-      rows: (this.props.rows == undefined ? defaultRows : this.props.rows)
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,17 +31,15 @@ class ManifestArea extends Component {
   }
 
   handleSubmit(event) {
-    alert('The manifest has been submitted: ' + this.props.manifest);
+    var fullURL = baseURL + '/kubectl/'
+
+    alert('The manifest has been submitted to ' + fullURL);
 
     // POST to the backend the manifest
-    // fetch('/kubectl/', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/x-yaml',
-    //     'Content-Type': 'application/x-yaml',
-    //   },
-    //   body: this.props.manifest // maybe we need to use JSON.stringify()
-    // })
+    fetch(fullURL, {
+      method: 'POST',
+      body: this.props.manifest // maybe we need to use JSON.stringify()
+    })
 
     event.preventDefault();
   }
@@ -57,18 +56,23 @@ class ManifestArea extends Component {
       },
     }));
 
+    const inputProps = {
+      fontFamily: "monospace,courier",
+      step: 300,
+    };
+
     return (
-      
         <form onSubmit={this.handleSubmit}>
             <Grid container direction="row" justify="flex-start" alignItems="flex-end">
               <TextField
                 id="outlined-multiline-static"
                 label="Manifest"
                 multiline
-                rows="10"
+                rows="25"
                 fullWidth="true"
                 defaultValue="Default Value"
                 className={useStyles.textField}
+                inputProps={inputProps}
                 value={this.props.manifest}
                 onChange={this.handleChange}
                 margin="normal"

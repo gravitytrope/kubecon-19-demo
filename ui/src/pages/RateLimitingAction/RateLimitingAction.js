@@ -12,18 +12,19 @@ import styles from "../../components/RealTimeGraph/styles.module.scss";
 import ManifestArea from '../../components/ManifestArea';
 import SliderTemplate from '../../components/SliderTemplate';
 
-
-const template=`---
-apiVersion: getamabassador.io/v1beta1
+// template for the manifest we will `kubectl apply` using the backend service
+const template = `---
+apiVersion: getambassador.io/v1beta1
 kind: RateLimit
 metadata:
   name: backend-rate-limit
 spec:
   domain: ambassador
   limits:
-  - pattern: [{generic_key: "backend"}]
-    rate: [VALUE]
-    unit: second
+    - pattern:
+        - generic_key: backend
+      rate: [VALUE]
+      unit: second
 `
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -56,38 +57,38 @@ class RateLimitingAction extends Component {
     }));
 
     return (
-        <div>
-          <p>
-              <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack"/>
-          </p>
+      <div>
+        <div className={useStyles.root}>
 
-          <div className={useStyles.root}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Typography variant="h3">
-                  <center>
-                    Rate Limiting in Action
-                  </center>
-                </Typography>
-              </Grid>
+          <Grid container spacing={10}>
 
-              <Grid item xs={6}>
-                  <RealTimeGraph/>
-              </Grid>
+            <Grid item xs={12}>
+              <img className={styles.center} src={aeslogo} alt="Ambassador Edge Stack" />
+            </Grid>
 
-              <Grid item xs={6}>
-                <Grid container direction="row" justify="flex-start" alignItems="flex-end">
-                  <Grid item xs={8}>
-                    <ManifestArea manifest={this.state.manifest} />
-                  </Grid>
-                  <Grid item xs={3}></Grid>
-                    <SliderTemplate template={template} default="100" onChange={this.handleManifestChange} />
-                  </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h3">
+                <center> Rate Limiting in Action </center>
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <RealTimeGraph />
+            </Grid>
+
+            <Grid item xs={6}>
+              <Grid container spacing={5} direction="row" justify="flex-start" alignItems="flex-start">
+                <Grid item xs={8}>
+                  <ManifestArea manifest={this.state.manifest} />
+                </Grid>
+                <Grid item xs={3}>
+                  <SliderTemplate template={template} default="100" onChange={this.handleManifestChange} />
                 </Grid>
               </Grid>
+            </Grid>
 
-
-          </div>
+          </Grid>
+        </div>
       </div>
     );
   }
